@@ -19,7 +19,7 @@
                   
                      <div class="form-group">
                         <label>NISN Siswa</label>
-                        <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn">
+                        <input type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{old("nisn")}}">
                         <span class="text-danger">@error('nisn') {{ $message }} @enderror</span>
                      </div>
                      
@@ -32,25 +32,25 @@
                         <select class="custom-select @error('spp_bulan') is-invalid @enderror" name="spp_bulan">
                            									
                               <option value="">Silahkan Pilih</option>											
-                                 <option value="januari">Januari</option>
-                                 <option value="februari">Februari</option>
-                                 <option value="maret">Maret</option>
-                                 <option value="april">April</option>
-                                 <option value="mei">Mei</option>
-                                 <option value="juni">Juni</option>
-                                 <option value="juli">Juli</option>
-                                 <option value="agustus">Agustus</option>
-                                 <option value="september">September</option>
-                                 <option value="oktober">Oktober</option>
-                                 <option value="november">November</option>
-                                 <option value="desember">Desember</option>
+                                 <option value="01">Januari</option>
+                                 <option value="02">Februari</option>
+                                 <option value="03">Maret</option>
+                                 <option value="04">April</option>
+                                 <option value="05">Mei</option>
+                                 <option value="06">Juni</option>
+                                 <option value="07">Juli</option>
+                                 <option value="08">Agustus</option>
+                                 <option value="09">September</option>
+                                 <option value="10">Oktober</option>
+                                 <option value="11">November</option>
+                                 <option value="12">Desember</option>
                        </select>
                      </div>
                      <span class="text-danger">@error('spp_bulan') {{ $message }} @enderror</span>
                   
                      <div class="form-group">
                        <label>Jumlah Bayar</label>
-                       <input type="text" class="form-control @error('jumlah_bayar') is-invalid @enderror" name="jumlah_bayar">
+                       <input type="text" class="form-control @error('jumlah_bayar') is-invalid @enderror" name="jumlah_bayar" value="{{old("jumlah_bayar")}}">
                        <span class="text-danger">@error('jumlah_bayar') {{ $message }} @enderror</span>
                     </div>
                   
@@ -83,6 +83,7 @@
                                             <th scope="col">NAMA SISWA</th>
                                             <th scope="col">SPP</th>
                                             <th scope="col">JUMLAH BAYAR</th>
+                                            <th scope="col">PERIODE</th>
                                             <th scope="col">TANGGAL BAYAR</th>
 								    <th scope="col"></th>                                        
                                         </tr>
@@ -97,8 +98,9 @@
                                             <td>{{ $value->users->name }}</td>
 								    <td>{{ $value->siswa->nisn }}</td>
                                             <td>{{ $value->siswa->nama }}</td>
-                                            <td>{{ $value->siswa->spp->nominal }}</td>
-                                            <td>{{ $value->jumlah_bayar }}</td>
+                                            <td>{{ "Rp. " . number_format($value->siswa->spp->nominal) }}</td>
+                                            <td>{{ "Rp. " . number_format( $value->jumlah_bayar) }}</td>
+                                            <td>{{ date('M, Y', strtotime($value->spp_bulan)) }}</td>
                                             <td>{{ $value->created_at->format('d M, Y') }}</td>
                                             <td>										                           
                                	 		  <div class="hide-menu">
